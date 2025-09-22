@@ -27,6 +27,7 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.level.BlockGetter;
 import org.jetbrains.annotations.NotNull;
 
@@ -42,15 +43,15 @@ public class DreambloomCropBlock extends CropBlock {
     public static final BooleanProperty IS_DOUBLE = BooleanProperty.create("is_double");
 
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[] {
-            Block.box(4.0D, 0.0D, 4.0D, 12.0D, 6.0D, 12.0D),   // Stage 0 - planted
-            Block.box(3.0D, 0.0D, 3.0D, 13.0D, 10.0D, 13.0D),  // Stage 1 - middle
-            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D),  // Stage 2 - tall bottom
-            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D)   // Stage 3 - flowered bottom
+            Block.box(4.0D, 0.0D, 4.0D, 12.0D, 6.0D, 12.0D),   // 0
+            Block.box(3.0D, 0.0D, 3.0D, 13.0D, 10.0D, 13.0D),  // 1
+            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D),  // 2 (lower)
+            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D)   // 3 (lower)
     };
 
     private static final VoxelShape[] SHAPE_BY_AGE_TOP = new VoxelShape[] {
-            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D),  // Stage 2 - tall top
-            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D)   // Stage 3 - flowered top
+            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D),  // 2 (upper)
+            Block.box(2.0D, 0.0D, 2.0D, 14.0D, 14.0D, 14.0D)   // 3 (upper)
     };
 
     public DreambloomCropBlock(Properties properties) {
@@ -61,32 +62,25 @@ public class DreambloomCropBlock extends CropBlock {
                 .setValue(IS_DOUBLE, false));
     }
 
+    @Override protected @NotNull ItemLike getBaseSeedId() { return ModItems.DREAMBLOOM_SEEDS.get(); }
+    @Override public @NotNull IntegerProperty getAgeProperty() { return AGE; }
+    @Override public int getMaxAge() { return MAX_AGE; }
+
     @Override
-    protected @NotNull ItemLike getBaseSeedId() {
-        return ModItems.DREAMBLOOM_SEEDS.get();
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> b) {
+        b.add(AGE, HALF, IS_DOUBLE);
+    }
+
+    // Explicitly non-occluding to avoid lighting artifacts.
+    @Override
+    public @NotNull VoxelShape getOcclusionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+        return Shapes.empty();
     }
 
     @Override
-    public @NotNull IntegerProperty getAgeProperty() {
-        return AGE;
-    }
-
-    @Override
-    public int getMaxAge() {
-        return MAX_AGE;
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(AGE, HALF, IS_DOUBLE);
-    }
-
-    @Override
-    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext ctx) {
         int age = this.getAge(state);
-        if (age >= 2 && state.getValue(HALF) == DoubleBlockHalf.UPPER) {
-            return SHAPE_BY_AGE_TOP[age - 2];
-        }
+        if (age >= 2 && state.getValue(HALF) == DoubleBlockHalf.UPPER) return SHAPE_BY_AGE_TOP[age - 2];
         return SHAPE_BY_AGE[Math.min(age, SHAPE_BY_AGE.length - 1)];
     }
 
@@ -96,52 +90,14 @@ public class DreambloomCropBlock extends CropBlock {
         if (state.getValue(HALF) == DoubleBlockHalf.UPPER) return;
 
         if (level.getRawBrightness(pos, 0) >= 9) {
-            int currentAge = this.getAge(state);
-            if (currentAge < this.getMaxAge()) {
-                float growthSpeed = getGrowthSpeed(this, level, pos);
-                if (random.nextInt((int)(25.0F / growthSpeed) + 1) == 0) {
-                    this.growCrop(level, pos, state);
+            int age = this.getAge(state);
+            if (age < this.getMaxAge()) {
+                float speed = getGrowthSpeed(this, level, pos);
+                if (random.nextInt((int)(25.0F / speed) + 1) == 0) {
+                    applyAge(level, pos, state, age + 1);
                 }
             }
         }
-    }
-
-    /**
-     * Ensures growth updates both halves when transitioning into/within double stages.
-     */
-    protected void growCrop(Level level, BlockPos pos, BlockState state) {
-        int currentAge = this.getAge(state);
-        int newAge = Math.min(currentAge + 1, this.getMaxAge());
-
-        // Single-block stages (0–1)
-        if (newAge < 2) {
-            level.setBlock(pos, this.getStateForAge(newAge), 2);
-            return;
-        }
-
-        // Double-block stages (2–3)
-        BlockPos upperPos = pos.above();
-        BlockState upperState = level.getBlockState(upperPos);
-        boolean hasUpper = upperState.is(this) && upperState.getValue(HALF) == DoubleBlockHalf.UPPER;
-
-        if (!hasUpper) {
-            if (!level.isEmptyBlock(upperPos)) {
-                return; // blocked above; don't partially update
-            }
-            level.setBlock(upperPos, this.defaultBlockState()
-                    .setValue(AGE, newAge)
-                    .setValue(HALF, DoubleBlockHalf.UPPER)
-                    .setValue(IS_DOUBLE, true), 2);
-        } else {
-            level.setBlock(upperPos, upperState
-                    .setValue(AGE, newAge)
-                    .setValue(IS_DOUBLE, true), 2);
-        }
-
-        level.setBlock(pos, state
-                .setValue(AGE, newAge)
-                .setValue(HALF, DoubleBlockHalf.LOWER)
-                .setValue(IS_DOUBLE, true), 2);
     }
 
     @Override
@@ -153,49 +109,34 @@ public class DreambloomCropBlock extends CropBlock {
         return super.canSurvive(state, level, pos);
     }
 
-    /**
-     * Keep halves synchronized for any neighbor change (pistons, explosions, etc.).
-     */
     @Override
-    public @NotNull BlockState updateShape(BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState,
+    public @NotNull BlockState updateShape(BlockState state, @NotNull Direction dir, @NotNull BlockState neighbor,
                                            @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
         DoubleBlockHalf half = state.getValue(HALF);
-        int age = this.getAge(state);
-
-        // If we're in a double stage (age >= 2), enforce paired halves.
-        if (age >= 2 && state.getValue(IS_DOUBLE)) {
-            if (direction == Direction.UP && half == DoubleBlockHalf.LOWER) {
-                if (!neighborState.is(this) || neighborState.getValue(HALF) != DoubleBlockHalf.UPPER) {
-                    return Blocks.AIR.defaultBlockState();
-                }
+        if (state.getValue(IS_DOUBLE)) {
+            if (dir == Direction.UP && half == DoubleBlockHalf.LOWER) {
+                if (!neighbor.is(this) || neighbor.getValue(HALF) != DoubleBlockHalf.UPPER) return Blocks.AIR.defaultBlockState();
             }
-            if (direction == Direction.DOWN && half == DoubleBlockHalf.UPPER) {
-                if (!neighborState.is(this) || neighborState.getValue(HALF) != DoubleBlockHalf.LOWER) {
-                    return Blocks.AIR.defaultBlockState();
-                }
+            if (dir == Direction.DOWN && half == DoubleBlockHalf.UPPER) {
+                if (!neighbor.is(this) || neighbor.getValue(HALF) != DoubleBlockHalf.LOWER) return Blocks.AIR.defaultBlockState();
             }
         }
-
-        return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+        return super.updateShape(state, dir, neighbor, level, pos, neighborPos);
     }
 
-    @Override
-    protected boolean mayPlaceOn(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    @Override protected boolean mayPlaceOn(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return state.is(Blocks.FARMLAND);
     }
 
     @Override
     public @NotNull BlockState playerWillDestroy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
-        if (!level.isClientSide) {
-            if (state.getValue(IS_DOUBLE)) {
-                DoubleBlockHalf half = state.getValue(HALF);
-                BlockPos otherPos = half == DoubleBlockHalf.LOWER ? pos.above() : pos.below();
-                BlockState otherState = level.getBlockState(otherPos);
-
-                if (otherState.is(this) && otherState.getValue(HALF) != half) {
-                    level.setBlock(otherPos, Blocks.AIR.defaultBlockState(), 35);
-                    level.levelEvent(player, 2001, otherPos, Block.getId(otherState));
-                }
+        if (!level.isClientSide && state.getValue(IS_DOUBLE)) {
+            DoubleBlockHalf half = state.getValue(HALF);
+            BlockPos otherPos = (half == DoubleBlockHalf.LOWER) ? pos.above() : pos.below();
+            BlockState other = level.getBlockState(otherPos);
+            if (other.is(this) && other.getValue(HALF) != half) {
+                level.setBlock(otherPos, Blocks.AIR.defaultBlockState(), 35);
+                level.levelEvent(player, 2001, otherPos, Block.getId(other));
             }
         }
         return super.playerWillDestroy(level, pos, state, player);
@@ -208,122 +149,109 @@ public class DreambloomCropBlock extends CropBlock {
 
     @Override
     public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, BlockState state) {
-        if (state.getValue(HALF) == DoubleBlockHalf.UPPER) return false;
-        return !this.isMaxAge(state);
+        return state.getValue(HALF) != DoubleBlockHalf.UPPER && !this.isMaxAge(state);
     }
 
     @Override
     public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, BlockState state) {
-        // Only act from lower or single-block
         if (state.getValue(HALF) == DoubleBlockHalf.UPPER) return;
+        int age = this.getAge(state);
+        int newAge = Math.min(age + this.getBonemealAgeIncrease(level), this.getMaxAge());
+        if (newAge != age) applyAge(level, pos, state, newAge);
+    }
 
-        int currentAge = this.getAge(state);
-        int newAge = Math.min(currentAge + this.getBonemealAgeIncrease(level), this.getMaxAge());
-        if (newAge == currentAge) return;
+    @Override
+    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, @NotNull LootParams.Builder builder) {
+        List<ItemStack> drops = new ArrayList<>();
+        int age = this.getAge(state);
+        RandomSource rnd = builder.getOptionalParameter(LootContextParams.THIS_ENTITY) != null
+                ? Objects.requireNonNull(builder.getOptionalParameter(LootContextParams.THIS_ENTITY)).getRandom()
+                : RandomSource.create();
 
+        if (state.getValue(HALF) == DoubleBlockHalf.LOWER || !state.getValue(IS_DOUBLE)) {
+            drops.add(new ItemStack(this.getBaseSeedId()));
+            if (age >= this.getMaxAge()) {
+                int count = 1 + rnd.nextInt(3);
+                if (count > 0) drops.add(new ItemStack(ModItems.DREAMBLOOM.get(), count));
+                if (rnd.nextFloat() < 0.5F) drops.add(new ItemStack(this.getBaseSeedId(), rnd.nextInt(2) + 1));
+            }
+        }
+        return drops;
+    }
+
+    // ---- helpers ----
+
+    private void applyAge(Level level, BlockPos pos, BlockState state, int newAge) {
+        newAge = Math.min(newAge, this.getMaxAge());
+
+        // Single-block stages (0–1)
         if (newAge < 2) {
-            level.setBlock(pos, this.getStateForAge(newAge), 2);
+            level.setBlock(pos, this.getStateForAge(newAge)
+                    .setValue(HALF, DoubleBlockHalf.LOWER)
+                    .setValue(IS_DOUBLE, false), 3);
             return;
         }
 
+        // Double-block stages (2–3)
         BlockPos upperPos = pos.above();
         BlockState upperState = level.getBlockState(upperPos);
         boolean hasUpper = upperState.is(this) && upperState.getValue(HALF) == DoubleBlockHalf.UPPER;
 
         if (!hasUpper) {
-            if (!level.isEmptyBlock(upperPos)) return; // blocked above
+            if (!level.isEmptyBlock(upperPos) && !upperState.is(this)) {
+                // blocked above; retry shortly to prevent permanent stall
+                if (level instanceof ServerLevel sl) sl.scheduleTick(pos, this, 2);
+                return;
+            }
             level.setBlock(upperPos, this.defaultBlockState()
                     .setValue(AGE, newAge)
                     .setValue(HALF, DoubleBlockHalf.UPPER)
-                    .setValue(IS_DOUBLE, true), 2);
+                    .setValue(IS_DOUBLE, true), 3);
         } else {
             level.setBlock(upperPos, upperState
                     .setValue(AGE, newAge)
-                    .setValue(IS_DOUBLE, true), 2);
+                    .setValue(IS_DOUBLE, true), 3);
         }
 
         level.setBlock(pos, state
                 .setValue(AGE, newAge)
                 .setValue(HALF, DoubleBlockHalf.LOWER)
-                .setValue(IS_DOUBLE, true), 2);
-    }
+                .setValue(IS_DOUBLE, true), 3);
 
-    // Handle drops in-code (you can swap to a loot table later if preferred).
-    @Override
-    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, @NotNull LootParams.Builder builder) {
-        List<ItemStack> drops = new ArrayList<>();
-        int age = this.getAge(state);
-        RandomSource random = builder.getOptionalParameter(LootContextParams.THIS_ENTITY) != null
-                ? Objects.requireNonNull(builder.getOptionalParameter(LootContextParams.THIS_ENTITY)).getRandom()
-                : RandomSource.create();
-
-        // Only drop from the lower half of double blocks, or from single blocks
-        if (state.getValue(HALF) == DoubleBlockHalf.LOWER || !state.getValue(IS_DOUBLE)) {
-            // Always drop at least 1 seed
-            drops.add(new ItemStack(this.getBaseSeedId()));
-
-            // If fully grown, drop dreambloom flowers
-            if (age >= this.getMaxAge()) {
-                int count = 1 + random.nextInt(3); // 1-3 dreambloom flowers
-                if (count > 0) {
-                    drops.add(new ItemStack(ModItems.DREAMBLOOM.get(), count));
-                }
-                // Chance for extra seeds when fully grown
-                if (random.nextFloat() < 0.5F) {
-                    drops.add(new ItemStack(this.getBaseSeedId(), random.nextInt(2) + 1));
-                }
-            }
+        // Nudge lighting to eliminate any stale dark geometry
+        if (level instanceof ServerLevel sl) {
+            sl.getChunkSource().getLightEngine().checkBlock(pos);
+            sl.getChunkSource().getLightEngine().checkBlock(upperPos);
         }
-
-        return drops;
     }
 
-    /**
-     * Vanilla-like growth speed computation (copied/adapted crop logic).
-     */
+    /** Vanilla-like growth speed computation. */
     protected static float getGrowthSpeed(Block block, BlockGetter level, BlockPos pos) {
         float speed = 1.0F;
-        BlockPos groundPos = pos.below();
+        BlockPos ground = pos.below();
 
-        for (int x = -1; x <= 1; ++x) {
-            for (int z = -1; z <= 1; ++z) {
-                float bonus = 0.0F;
-                BlockState blockstate = level.getBlockState(groundPos.offset(x, 0, z));
-                if (blockstate.is(Blocks.FARMLAND)) {
-                    bonus = 1.0F;
-                    if (blockstate.getValue(FarmBlock.MOISTURE) > 0) {
-                        bonus = 3.0F;
-                    }
-                }
-
-                if (x != 0 || z != 0) {
-                    bonus /= 4.0F;
-                }
-
-                speed += bonus;
+        for (int x = -1; x <= 1; ++x) for (int z = -1; z <= 1; ++z) {
+            float bonus = 0.0F;
+            BlockState soil = level.getBlockState(ground.offset(x, 0, z));
+            if (soil.is(Blocks.FARMLAND)) {
+                bonus = 1.0F;
+                if (soil.getValue(FarmBlock.MOISTURE) > 0) bonus = 3.0F;
             }
+            if (x != 0 || z != 0) bonus /= 4.0F;
+            speed += bonus;
         }
 
-        BlockPos northPos = pos.north();
-        BlockPos southPos = pos.south();
-        BlockPos westPos = pos.west();
-        BlockPos eastPos = pos.east();
-        boolean xAxisAdjacent = level.getBlockState(westPos).is(block) || level.getBlockState(eastPos).is(block);
-        boolean zAxisAdjacent = level.getBlockState(northPos).is(block) || level.getBlockState(southPos).is(block);
+        boolean xAdj = level.getBlockState(pos.west()).is(block) || level.getBlockState(pos.east()).is(block);
+        boolean zAdj = level.getBlockState(pos.north()).is(block) || level.getBlockState(pos.south()).is(block);
 
-        if (xAxisAdjacent && zAxisAdjacent) {
-            speed /= 2.0F;
-        } else {
-            boolean diagonalAdjacent =
-                    level.getBlockState(westPos.north()).is(block) ||
-                            level.getBlockState(eastPos.north()).is(block) ||
-                            level.getBlockState(eastPos.south()).is(block) ||
-                            level.getBlockState(westPos.south()).is(block);
-            if (diagonalAdjacent) {
-                speed /= 2.0F;
-            }
+        if (xAdj && zAdj) speed /= 2.0F;
+        else {
+            boolean diag = level.getBlockState(pos.west().north()).is(block)
+                    || level.getBlockState(pos.east().north()).is(block)
+                    || level.getBlockState(pos.east().south()).is(block)
+                    || level.getBlockState(pos.west().south()).is(block);
+            if (diag) speed /= 2.0F;
         }
-
         return speed;
     }
 }
