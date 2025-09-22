@@ -1,7 +1,6 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
-	"parent": "GanjaLeaf",
 	"textures": {
 		"0": "smokeleafeg:block/dreambloom_stage1",
 		"particle": "smokeleafeg:block/dreambloom_stage1"

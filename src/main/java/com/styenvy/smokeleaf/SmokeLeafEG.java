@@ -2,11 +2,7 @@ package com.styenvy.smokeleaf;
 
 import com.styenvy.smokeleaf.block.ModBlocks;
 import com.styenvy.smokeleaf.item.ModItems;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import com.styenvy.smokeleaf.item.ModCreativeTabs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -22,36 +18,29 @@ public class SmokeLeafEG {
     public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
     public SmokeLeafEG(IEventBus modEventBus, ModContainer modContainer, Dist dist) {
-        ModBlocks.register(modEventBus);
-        ModItems.register(modEventBus);
+        // Register all deferred registers
+        ModBlocks.BLOCKS.register(modEventBus);
+        ModItems.ITEMS.register(modEventBus);
+        ModCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
 
+        // Register mod event listeners
         modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener(this::addCreative);
 
+        // Only register client-side events on client
         if (dist.isClient()) {
             modEventBus.addListener(this::clientSetup);
         }
 
-        NeoForge.EVENT_BUS.register(this);
+        // DO NOT register to NeoForge.EVENT_BUS unless you have @SubscribeEvent methods
+        LOGGER.info("SmokeLeaf Expanded mod initialized!");
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        LOGGER.info("SmokeLeaf Expanded initializing...");
+        LOGGER.info("SmokeLeaf Expanded common setup complete!");
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        event.enqueueWork(() -> {
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.DREAMBLOOM_CROP.get(), RenderType.cutout());
-        });
-    }
-
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
-            event.accept(ModItems.DREAMBLOOM_SEEDS.get());
-        }
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.DREAMBLOOM.get());
-            event.accept(ModItems.DREAMBLOOM_SEEDS.get());
-        }
+        // Client setup - render layers are now handled via block properties or model json
+        LOGGER.info("SmokeLeaf Expanded client setup complete!");
     }
 }

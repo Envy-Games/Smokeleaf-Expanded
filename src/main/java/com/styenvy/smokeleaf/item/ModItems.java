@@ -25,7 +25,4 @@ public class ModItems {
                             .saturationModifier(0.3F)
                             .build())));
 
-    public static void register(IEventBus eventBus) {
-        ITEMS.register(eventBus);
-    }
 }

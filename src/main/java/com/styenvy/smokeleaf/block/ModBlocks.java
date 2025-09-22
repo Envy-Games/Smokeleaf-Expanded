@@ -6,7 +6,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -23,8 +22,4 @@ public class ModBlocks {
                     .instabreak()
                     .sound(SoundType.CROP)
                     .pushReaction(PushReaction.DESTROY)));
-
-    public static void register(IEventBus eventBus) {
-        BLOCKS.register(eventBus);
-    }
 }
