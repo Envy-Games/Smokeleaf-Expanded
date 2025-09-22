@@ -18,6 +18,7 @@ public class ModBlocks {
             () -> new DreambloomCropBlock(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.PLANT)
                     .noCollission()
+                    .noOcclusion()
                     .randomTicks()
                     .instabreak()
                     .sound(SoundType.CROP)
