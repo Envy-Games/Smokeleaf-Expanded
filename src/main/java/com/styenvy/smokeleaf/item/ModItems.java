@@ -15,19 +15,19 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(BuiltInRegistries.ITEM, SmokeLeafEG.MODID);
 
+    // Dreambloom items (existing)
     public static final DeferredHolder<Item, ItemNameBlockItem> DREAMBLOOM_SEEDS = ITEMS.register("dreambloom_seeds",
             () -> new ItemNameBlockItem(ModBlocks.DREAMBLOOM_CROP.get(),
                     new Item.Properties()));
 
-    // 20 ticks = 1 second
     private static final FoodProperties DREAMBLOOM_FOOD = new FoodProperties.Builder()
             .nutrition(2)
             .saturationModifier(0.3F)
-            // “good vibes”
+            // "good vibes"
             .effect(() -> new MobEffectInstance(MobEffects.NIGHT_VISION,      20 * 45, 0), 0.85F) // 45s, 85%
             .effect(() -> new MobEffectInstance(MobEffects.SLOW_FALLING,      20 * 20, 0), 0.70F) // 20s, 70%
             .effect(() -> new MobEffectInstance(MobEffects.GLOWING,           20 * 20, 0), 0.60F) // 20s, 60%
-            // “side effects”
+            // "side effects"
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20 * 10, 0), 0.45F) // 10s, 45%
             .effect(() -> new MobEffectInstance(MobEffects.HUNGER,            20 * 15, 0), 0.50F) // 15s munchies, 50%
             .alwaysEdible()
@@ -35,4 +35,60 @@ public class ModItems {
 
     public static final DeferredHolder<Item, Item> DREAMBLOOM = ITEMS.register("dreambloom",
             () -> new Item(new Item.Properties().food(DREAMBLOOM_FOOD)));
+
+    // Amethyst Haze items
+    public static final DeferredHolder<Item, ItemNameBlockItem> AMETHYST_HAZE_SEEDS = ITEMS.register("amethyst_haze_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.AMETHYST_HAZE_CROP.get(),
+                    new Item.Properties()));
+
+    private static final FoodProperties AMETHYST_HAZE_FOOD = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.3F)
+            .alwaysEdible()
+            .build();
+
+    public static final DeferredHolder<Item, Item> AMETHYST_HAZE = ITEMS.register("amethyst_haze",
+            () -> new Item(new Item.Properties().food(AMETHYST_HAZE_FOOD)));
+
+    // Cloudpetal items
+    public static final DeferredHolder<Item, ItemNameBlockItem> CLOUDPETAL_SEEDS = ITEMS.register("cloudpetal_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.CLOUDPETAL_CROP.get(),
+                    new Item.Properties()));
+
+    private static final FoodProperties CLOUDPETAL_FOOD = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.3F)
+            .alwaysEdible()
+            .build();
+
+    public static final DeferredHolder<Item, Item> CLOUDPETAL = ITEMS.register("cloudpetal",
+            () -> new Item(new Item.Properties().food(CLOUDPETAL_FOOD)));
+
+    // Crimson Emberleaf items
+    public static final DeferredHolder<Item, ItemNameBlockItem> CRIMSON_EMBERLEAF_SEEDS = ITEMS.register("crimson_emberleaf_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.CRIMSON_EMBERLEAF_CROP.get(),
+                    new Item.Properties()));
+
+    private static final FoodProperties CRIMSON_EMBERLEAF_FOOD = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.3F)
+            .alwaysEdible()
+            .build();
+
+    public static final DeferredHolder<Item, Item> CRIMSON_EMBERLEAF = ITEMS.register("crimson_emberleaf",
+            () -> new Item(new Item.Properties().food(CRIMSON_EMBERLEAF_FOOD)));
+
+    // Daydream Bloom items
+    public static final DeferredHolder<Item, ItemNameBlockItem> DAYDREAM_BLOOM_SEEDS = ITEMS.register("daydream_bloom_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.DAYDREAM_BLOOM_CROP.get(),
+                    new Item.Properties()));
+
+    private static final FoodProperties DAYDREAM_BLOOM_FOOD = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.3F)
+            .alwaysEdible()
+            .build();
+
+    public static final DeferredHolder<Item, Item> DAYDREAM_BLOOM = ITEMS.register("daydream_bloom",
+            () -> new Item(new Item.Properties().food(DAYDREAM_BLOOM_FOOD)));
 }

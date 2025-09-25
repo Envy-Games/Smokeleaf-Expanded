@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
-    "smokeleafeg:dreambloom_crop"
+    "smokeleafeg:dreambloom_crop",
+    "smokeleafeg:amethyst_haze_crop",
+    "smokeleafeg:daydream_bloom_crop",
+    "smokeleafeg:cloudpetal_crop",
+    "smokeleafeg:crimson_emberleaf_crop"
   ]
 }

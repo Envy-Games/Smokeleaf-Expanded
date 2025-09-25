@@ -6,7 +6,7 @@
     "age=2,half=lower,is_double=true":  { "model": "smokeleafeg:block/smokeleaf_stage2_bottom" },
     "age=2,half=upper,is_double=true":  { "model": "smokeleafeg:block/smokeleaf_stage2_top" },
 
-    "age=3,half=lower,is_double=true":  { "model": "smokeleafeg:block/dreambloom_stage3_bottom" },
-    "age=3,half=upper,is_double=true":  { "model": "smokeleafeg:block/dreambloom_stage3_top" }
+    "age=3,half=lower,is_double=true":  { "model": "smokeleafeg:block/amethyst_haze_stage3_bottom" },
+    "age=3,half=upper,is_double=true":  { "model": "smokeleafeg:block/amethyst_haze_stage3_top" }
   }
 }

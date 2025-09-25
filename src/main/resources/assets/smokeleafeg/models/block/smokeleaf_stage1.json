@@ -2,8 +2,8 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"2": "smokeleafeg:block/dreambloom_stage1",
-		"particle": "smokeleafeg:block/dreambloom_stage1"
+		"2": "smokeleafeg:block/smokeleaf_stage1",
+		"particle": "smokeleafeg:block/smokeleaf_stage1"
 	},
 	"elements": [
 		{

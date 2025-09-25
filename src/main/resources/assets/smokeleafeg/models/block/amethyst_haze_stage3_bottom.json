@@ -1,7 +1,6 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
-	"parent": "GanjaLeaf",
 	"texture_size": [32, 32],
 	"textures": {
 		"19": "smokeleafeg:block/amethyst_haze_stage3_bottom",

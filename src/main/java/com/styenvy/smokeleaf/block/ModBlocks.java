@@ -23,4 +23,44 @@ public class ModBlocks {
                     .instabreak()
                     .sound(SoundType.CROP)
                     .pushReaction(PushReaction.DESTROY)));
+
+    public static final DeferredHolder<Block, AmethystHazeCropBlock> AMETHYST_HAZE_CROP = BLOCKS.register("amethyst_haze_crop",
+            () -> new AmethystHazeCropBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .noOcclusion()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.CROP)
+                    .pushReaction(PushReaction.DESTROY)));
+
+    public static final DeferredHolder<Block, CloudpetalCropBlock> CLOUDPETAL_CROP = BLOCKS.register("cloudpetal_crop",
+            () -> new CloudpetalCropBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .noOcclusion()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.CROP)
+                    .pushReaction(PushReaction.DESTROY)));
+
+    public static final DeferredHolder<Block, CrimsonEmberleafCropBlock> CRIMSON_EMBERLEAF_CROP = BLOCKS.register("crimson_emberleaf_crop",
+            () -> new CrimsonEmberleafCropBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .noOcclusion()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.CROP)
+                    .pushReaction(PushReaction.DESTROY)));
+
+    public static final DeferredHolder<Block, DaydreamBloomCropBlock> DAYDREAM_BLOOM_CROP = BLOCKS.register("daydream_bloom_crop",
+            () -> new DaydreamBloomCropBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .noOcclusion()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.CROP)
+                    .pushReaction(PushReaction.DESTROY)));
 }

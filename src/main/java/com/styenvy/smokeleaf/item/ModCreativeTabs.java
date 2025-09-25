@@ -17,9 +17,25 @@ public class ModCreativeTabs {
                     .icon(() -> new ItemStack(ModItems.DREAMBLOOM.get()))
                     .title(Component.translatable("creativetab.smokeleaf_tab"))
                     .displayItems((parameters, output) -> {
-                        // Add all mod items to the creative tab
+                        // Dreambloom items
                         output.accept(ModItems.DREAMBLOOM_SEEDS.get());
                         output.accept(ModItems.DREAMBLOOM.get());
+
+                        // Amethyst Haze items
+                        output.accept(ModItems.AMETHYST_HAZE_SEEDS.get());
+                        output.accept(ModItems.AMETHYST_HAZE.get());
+
+                        // Cloudpetal items
+                        output.accept(ModItems.CLOUDPETAL_SEEDS.get());
+                        output.accept(ModItems.CLOUDPETAL.get());
+
+                        // Crimson Emberleaf items
+                        output.accept(ModItems.CRIMSON_EMBERLEAF_SEEDS.get());
+                        output.accept(ModItems.CRIMSON_EMBERLEAF.get());
+
+                        // Daydream Bloom items
+                        output.accept(ModItems.DAYDREAM_BLOOM_SEEDS.get());
+                        output.accept(ModItems.DAYDREAM_BLOOM.get());
                     })
                     .build());
 }
