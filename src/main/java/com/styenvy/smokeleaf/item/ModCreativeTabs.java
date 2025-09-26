@@ -52,6 +52,10 @@ public class ModCreativeTabs {
                         // Midnight Glow items
                         output.accept(ModItems.MIDNIGHT_GLOW_SEEDS.get());
                         output.accept(ModItems.MIDNIGHT_GLOW.get());
+
+                        // Alchemist Ash items
+                        output.accept(ModItems.ALCHEMIST_ASH_SEEDS.get());
+                        output.accept(ModItems.ALCHEMIST_ASH.get());
                     })
                     .build());
 }

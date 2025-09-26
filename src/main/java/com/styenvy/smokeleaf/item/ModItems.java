@@ -1,3 +1,4 @@
+// src/main/java/com/styenvy/smokeleaf/item/ModItems.java
 package com.styenvy.smokeleaf.item;
 
 import com.styenvy.smokeleaf.SmokeLeafEG;
@@ -147,4 +148,18 @@ public class ModItems {
 
     public static final DeferredHolder<Item, Item> MIDNIGHT_GLOW = ITEMS.register("midnight_glow",
             () -> new Item(new Item.Properties().food(MIDNIGHT_GLOW_FOOD)));
+
+    // Alchemist Ash items
+    public static final DeferredHolder<Item, ItemNameBlockItem> ALCHEMIST_ASH_SEEDS = ITEMS.register("alchemist_ash_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.ALCHEMIST_ASH_CROP.get(),
+                    new Item.Properties()));
+
+    private static final FoodProperties ALCHEMIST_ASH_FOOD = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.3F)
+            .alwaysEdible()
+            .build();
+
+    public static final DeferredHolder<Item, Item> ALCHEMIST_ASH = ITEMS.register("alchemist_ash",
+            () -> new Item(new Item.Properties().food(ALCHEMIST_ASH_FOOD)));
 }

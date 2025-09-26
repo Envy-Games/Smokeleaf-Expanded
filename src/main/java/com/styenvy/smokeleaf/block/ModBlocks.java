@@ -103,4 +103,14 @@ public class ModBlocks {
                     .instabreak()
                     .sound(SoundType.CROP)
                     .pushReaction(PushReaction.DESTROY)));
+
+    public static final DeferredHolder<Block, AlchemistAshCropBlock> ALCHEMIST_ASH_CROP = BLOCKS.register("alchemist_ash_crop",
+            () -> new AlchemistAshCropBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .noOcclusion()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.CROP)
+                    .pushReaction(PushReaction.DESTROY)));
 }
