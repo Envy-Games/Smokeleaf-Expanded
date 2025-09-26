@@ -3,8 +3,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"3": "smokeleafeg:block/sundream_stage3_top",
-		"particle": "smokeleafeg:block/sundream_stage3_top"
+		"3": "smokeleafeg:block/alchemists_ash_stage3_top",
+		"particle": "smokeleafeg:block/alchemists_ash_stage3_top"
 	},
 	"elements": [
 		{
