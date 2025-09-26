@@ -63,4 +63,44 @@ public class ModBlocks {
                     .instabreak()
                     .sound(SoundType.CROP)
                     .pushReaction(PushReaction.DESTROY)));
+
+    public static final DeferredHolder<Block, RunegrassCropBlock> RUNEGRASS_CROP = BLOCKS.register("runegrass_crop",
+            () -> new RunegrassCropBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .noOcclusion()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.CROP)
+                    .pushReaction(PushReaction.DESTROY)));
+
+    public static final DeferredHolder<Block, SkybudCropBlock> SKYBUD_CROP = BLOCKS.register("skybud_crop",
+            () -> new SkybudCropBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .noOcclusion()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.CROP)
+                    .pushReaction(PushReaction.DESTROY)));
+
+    public static final DeferredHolder<Block, DriftleafCropBlock> DRIFTLEAF_CROP = BLOCKS.register("driftleaf_crop",
+            () -> new DriftleafCropBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .noOcclusion()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.CROP)
+                    .pushReaction(PushReaction.DESTROY)));
+
+    public static final DeferredHolder<Block, MidnightGlowCropBlock> MIDNIGHT_GLOW_CROP = BLOCKS.register("midnight_glow_crop",
+            () -> new MidnightGlowCropBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .noOcclusion()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.CROP)
+                    .pushReaction(PushReaction.DESTROY)));
 }

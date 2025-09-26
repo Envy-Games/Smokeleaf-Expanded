@@ -36,6 +36,22 @@ public class ModCreativeTabs {
                         // Daydream Bloom items
                         output.accept(ModItems.DAYDREAM_BLOOM_SEEDS.get());
                         output.accept(ModItems.DAYDREAM_BLOOM.get());
+
+                        // Runegrass items
+                        output.accept(ModItems.RUNEGRASS_SEEDS.get());
+                        output.accept(ModItems.RUNEGRASS.get());
+
+                        // Skybud items
+                        output.accept(ModItems.SKYBUD_SEEDS.get());
+                        output.accept(ModItems.SKYBUD.get());
+
+                        // Driftleaf items
+                        output.accept(ModItems.DRIFTLEAF_SEEDS.get());
+                        output.accept(ModItems.DRIFTLEAF.get());
+
+                        // Midnight Glow items
+                        output.accept(ModItems.MIDNIGHT_GLOW_SEEDS.get());
+                        output.accept(ModItems.MIDNIGHT_GLOW.get());
                     })
                     .build());
 }

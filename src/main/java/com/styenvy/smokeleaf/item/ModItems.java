@@ -91,4 +91,60 @@ public class ModItems {
 
     public static final DeferredHolder<Item, Item> DAYDREAM_BLOOM = ITEMS.register("daydream_bloom",
             () -> new Item(new Item.Properties().food(DAYDREAM_BLOOM_FOOD)));
+
+    // Runegrass items
+    public static final DeferredHolder<Item, ItemNameBlockItem> RUNEGRASS_SEEDS = ITEMS.register("runegrass_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.RUNEGRASS_CROP.get(),
+                    new Item.Properties()));
+
+    private static final FoodProperties RUNEGRASS_FOOD = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.3F)
+            .alwaysEdible()
+            .build();
+
+    public static final DeferredHolder<Item, Item> RUNEGRASS = ITEMS.register("runegrass",
+            () -> new Item(new Item.Properties().food(RUNEGRASS_FOOD)));
+
+    // Skybud items
+    public static final DeferredHolder<Item, ItemNameBlockItem> SKYBUD_SEEDS = ITEMS.register("skybud_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.SKYBUD_CROP.get(),
+                    new Item.Properties()));
+
+    private static final FoodProperties SKYBUD_FOOD = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.3F)
+            .alwaysEdible()
+            .build();
+
+    public static final DeferredHolder<Item, Item> SKYBUD = ITEMS.register("skybud",
+            () -> new Item(new Item.Properties().food(SKYBUD_FOOD)));
+
+    // Driftleaf items
+    public static final DeferredHolder<Item, ItemNameBlockItem> DRIFTLEAF_SEEDS = ITEMS.register("driftleaf_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.DRIFTLEAF_CROP.get(),
+                    new Item.Properties()));
+
+    private static final FoodProperties DRIFTLEAF_FOOD = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.3F)
+            .alwaysEdible()
+            .build();
+
+    public static final DeferredHolder<Item, Item> DRIFTLEAF = ITEMS.register("driftleaf",
+            () -> new Item(new Item.Properties().food(DRIFTLEAF_FOOD)));
+
+    // Midnight Glow items
+    public static final DeferredHolder<Item, ItemNameBlockItem> MIDNIGHT_GLOW_SEEDS = ITEMS.register("midnight_glow_seeds",
+            () -> new ItemNameBlockItem(ModBlocks.MIDNIGHT_GLOW_CROP.get(),
+                    new Item.Properties()));
+
+    private static final FoodProperties MIDNIGHT_GLOW_FOOD = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationModifier(0.3F)
+            .alwaysEdible()
+            .build();
+
+    public static final DeferredHolder<Item, Item> MIDNIGHT_GLOW = ITEMS.register("midnight_glow",
+            () -> new Item(new Item.Properties().food(MIDNIGHT_GLOW_FOOD)));
 }
