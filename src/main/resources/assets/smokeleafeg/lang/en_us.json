@@ -35,5 +35,9 @@
 
   "block.smokeleafeg.midnight_glow_crop": "Midnight Glow",
   "item.smokeleafeg.midnight_glow_seeds": "Midnight Glow Seeds",
-  "item.smokeleafeg.midnight_glow": "Midnight Glow"
+  "item.smokeleafeg.midnight_glow": "Midnight Glow",
+
+  "block.smokeleafeg.alchemist_ash_crop": "Alchemists' Ash",
+  "item.smokeleafeg.alchemist_ash_seeds": "Alchemists' Ash Seeds",
+  "item.smokeleafeg.alchemist_ash": "Alchemists' Ash"
 }

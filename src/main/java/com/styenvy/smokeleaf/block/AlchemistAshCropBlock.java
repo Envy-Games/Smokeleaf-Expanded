@@ -142,7 +142,7 @@ public class AlchemistAshCropBlock extends CropBlock {
     }
 
     @Override
-    public void setPlacedBy(Level level, @NotNull BlockPos pos, BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack stack) {
+    public void setPlacedBy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack stack) {
         // No special placement beyond default crop placement; upper half is created as the plant grows.
         super.setPlacedBy(level, pos, state, placer, stack);
     }
