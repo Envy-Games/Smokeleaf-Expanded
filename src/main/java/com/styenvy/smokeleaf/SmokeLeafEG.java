@@ -7,6 +7,7 @@ import com.styenvy.smokeleaf.potion.ModPotions;
 import com.styenvy.smokeleaf.villager.ModPOITypes;
 import com.styenvy.smokeleaf.villager.ModVillagers;
 import com.styenvy.smokeleaf.villager.ModVillagerTrades;
+import com.styenvy.smokeleaf.effect.ModMobEffects;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -30,6 +31,7 @@ public class SmokeLeafEG {
         ModPOITypes.POI_TYPES.register(modEventBus);
         ModVillagers.VILLAGER_PROFESSIONS.register(modEventBus);
         ModPotions.POTIONS.register(modEventBus);
+        ModMobEffects.MOB_EFFECTS.register(modEventBus);
 
         // Lifecycle
         modEventBus.addListener(this::commonSetup);
