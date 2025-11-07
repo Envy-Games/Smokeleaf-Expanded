@@ -44,6 +44,10 @@ public class ModCreativeTabs {
                         // Cookie Tray
                         output.accept(ModItems.COOKIE_TRAY.get());
 
+                        // Workstation Blocks
+                        output.accept(ModItems.COOKIE_OVEN.get());
+                        output.accept(ModItems.GERMINATION_TABLE.get());
+
                         // Cookies Section
                         output.accept(ModItems.DREAMBLOOM_COOKIE.get());
                         output.accept(ModItems.AMETHYST_HAZE_COOKIE.get());

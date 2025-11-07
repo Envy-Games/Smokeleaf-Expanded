@@ -1,0 +1,136 @@
+{
+  "type": "minecraft:villager_trades",
+  "profession": "smokeleafeg:smokeleaf_farmer",
+  "trades": {
+    "1": [
+      {
+        "type": "minecraft:items_for_emeralds",
+        "item": "smokeleafeg:dreambloom_seeds",
+        "count": 4,
+        "emerald_cost": 1,
+        "max_uses": 16,
+        "villager_xp": 2
+      },
+      {
+        "type": "minecraft:emeralds_for_items",
+        "item": "smokeleafeg:dreambloom",
+        "count": 20,
+        "emerald_count": 1,
+        "max_uses": 16,
+        "villager_xp": 2
+      }
+    ],
+    "2": [
+      {
+        "type": "minecraft:items_for_emeralds",
+        "item": "smokeleafeg:amethyst_haze_seeds",
+        "count": 3,
+        "emerald_cost": 1,
+        "max_uses": 12,
+        "villager_xp": 5
+      },
+      {
+        "type": "minecraft:items_for_emeralds",
+        "item": "smokeleafeg:cloudpetal_seeds",
+        "count": 3,
+        "emerald_cost": 1,
+        "max_uses": 12,
+        "villager_xp": 5
+      },
+      {
+        "type": "minecraft:emeralds_for_items",
+        "item": "smokeleafeg:amethyst_haze",
+        "count": 15,
+        "emerald_count": 1,
+        "max_uses": 12,
+        "villager_xp": 5
+      }
+    ],
+    "3": [
+      {
+        "type": "minecraft:items_for_emeralds",
+        "item": "smokeleafeg:crimson_emberleaf_seeds",
+        "count": 2,
+        "emerald_cost": 2,
+        "max_uses": 12,
+        "villager_xp": 10
+      },
+      {
+        "type": "minecraft:items_for_emeralds",
+        "item": "smokeleafeg:driftleaf_seeds",
+        "count": 2,
+        "emerald_cost": 2,
+        "max_uses": 12,
+        "villager_xp": 10
+      },
+      {
+        "type": "minecraft:items_for_emeralds",
+        "item": "smokeleafeg:skybud_seeds",
+        "count": 2,
+        "emerald_cost": 2,
+        "max_uses": 12,
+        "villager_xp": 10
+      }
+    ],
+    "4": [
+      {
+        "type": "minecraft:items_for_emeralds",
+        "item": "smokeleafeg:midnight_glow_seeds",
+        "count": 1,
+        "emerald_cost": 3,
+        "max_uses": 8,
+        "villager_xp": 15
+      },
+      {
+        "type": "minecraft:items_for_emeralds",
+        "item": "smokeleafeg:alchemist_ash_seeds",
+        "count": 1,
+        "emerald_cost": 3,
+        "max_uses": 8,
+        "villager_xp": 15
+      },
+      {
+        "type": "minecraft:emeralds_for_items",
+        "item": "smokeleafeg:midnight_glow",
+        "count": 8,
+        "emerald_count": 1,
+        "max_uses": 12,
+        "villager_xp": 15
+      }
+    ],
+    "5": [
+      {
+        "type": "minecraft:items_for_emeralds",
+        "item": "smokeleafeg:runegrass_seeds",
+        "count": 1,
+        "emerald_cost": 5,
+        "max_uses": 3,
+        "villager_xp": 30
+      },
+      {
+        "type": "minecraft:items_for_emeralds",
+        "item": "smokeleafeg:daydream_bloom_seeds",
+        "count": 1,
+        "emerald_cost": 8,
+        "max_uses": 3,
+        "villager_xp": 30
+      },
+      {
+        "type": "minecraft:emeralds_for_items",
+        "item": "smokeleafeg:runegrass",
+        "count": 3,
+        "emerald_count": 2,
+        "max_uses": 12,
+        "villager_xp": 30
+      },
+      {
+        "type": "minecraft:emeralds_for_items",
+        "item": "smokeleafeg:daydream_bloom",
+        "count": 2,
+        "emerald_count": 3,
+        "max_uses": 12,
+        "villager_xp": 30
+      }
+    ]
+  }
+}

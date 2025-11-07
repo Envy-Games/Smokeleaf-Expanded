@@ -14,6 +14,21 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(BuiltInRegistries.BLOCK, SmokeLeafEG.MODID);
 
+    // ==================== WORKSTATION BLOCKS ====================
+    public static final DeferredHolder<Block, Block> COOKIE_OVEN = BLOCKS.register("cookie_oven",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.STONE)
+                    .strength(3.5F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)));
+
+    public static final DeferredHolder<Block, Block> GERMINATION_TABLE = BLOCKS.register("germination_table",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.WOOD)
+                    .strength(2.5F)
+                    .sound(SoundType.WOOD)));
+
+    // ==================== CROP BLOCKS ====================
     public static final DeferredHolder<Block, DreambloomCropBlock> DREAMBLOOM_CROP = BLOCKS.register("dreambloom_crop",
             () -> new DreambloomCropBlock(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.PLANT)

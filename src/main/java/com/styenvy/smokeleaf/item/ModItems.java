@@ -107,6 +107,15 @@ public class ModItems {
     public static final DeferredHolder<Item, Item> ALCHEMIST_ASH = ITEMS.register("alchemist_ash",
             () -> new Item(new Item.Properties()));
 
+    // ==================== WORKSTATION BLOCK ITEMS ====================
+    public static final DeferredHolder<Item, Item> COOKIE_OVEN = ITEMS.register("cookie_oven",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.COOKIE_OVEN.get(),
+                    new Item.Properties()));
+
+    public static final DeferredHolder<Item, Item> GERMINATION_TABLE = ITEMS.register("germination_table",
+            () -> new net.minecraft.world.item.BlockItem(ModBlocks.GERMINATION_TABLE.get(),
+                    new Item.Properties()));
+
     // ==================== COOKIE TRAY ====================
     public static final DeferredHolder<Item, Item> COOKIE_TRAY = ITEMS.register("cookie_tray",
             () -> new Item(new Item.Properties().stacksTo(16)));
