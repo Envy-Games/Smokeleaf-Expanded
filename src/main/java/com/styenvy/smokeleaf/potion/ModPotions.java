@@ -33,7 +33,7 @@ public class ModPotions {
                     new MobEffectInstance(MobEffects.LUCK, 20 * 360, 2),
                     new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE, 20 * 360, 0)));
 
-    // Invisibility + purple glow (custom) instead of vanilla white outline
+    // Invisibility + glow
     public static final DeferredHolder<Potion, Potion> MIDNIGHT_GLOW = POTIONS.register("midnight_glow",
             () -> new Potion(
                     new MobEffectInstance(MobEffects.INVISIBILITY, 20 * 360, 0),
