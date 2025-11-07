@@ -1,60 +1,44 @@
 {
   "creativetab.smokeleaf_tab": "SmokeLeaf Expanded",
-
   "block.smokeleafeg.cookie_oven": "Cookie Oven",
   "block.smokeleafeg.germination_table": "Germination Table",
-
   "item.smokeleafeg.cookie_oven": "Cookie Oven",
   "item.smokeleafeg.germination_table": "Germination Table",
-
   "item.smokeleafeg.dreambloom_seeds": "Dreambloom Seeds",
   "item.smokeleafeg.dreambloom": "Dreambloom",
   "item.smokeleafeg.dreambloom_cookie": "Dreambloom Cookie",
-
   "item.smokeleafeg.amethyst_haze_seeds": "Amethyst Haze Seeds",
   "item.smokeleafeg.amethyst_haze": "Amethyst Haze",
   "item.smokeleafeg.amethyst_haze_cookie": "Amethyst Haze Cookie",
-
   "item.smokeleafeg.cloudpetal_seeds": "Cloudpetal Seeds",
   "item.smokeleafeg.cloudpetal": "Cloudpetal",
   "item.smokeleafeg.cloudpetal_cookie": "Cloudpetal Cookie",
-
   "item.smokeleafeg.crimson_emberleaf_seeds": "Crimson Emberleaf Seeds",
   "item.smokeleafeg.crimson_emberleaf": "Crimson Emberleaf",
   "item.smokeleafeg.crimson_emberleaf_cookie": "Crimson Emberleaf Cookie",
-
   "item.smokeleafeg.daydream_bloom_seeds": "Daydream Bloom Seeds",
   "item.smokeleafeg.daydream_bloom": "Daydream Bloom",
   "item.smokeleafeg.daydream_bloom_cookie": "Daydream Bloom Cookie",
-
   "item.smokeleafeg.runegrass_seeds": "Runegrass Seeds",
   "item.smokeleafeg.runegrass": "Runegrass",
   "item.smokeleafeg.runegrass_cookie": "Runegrass Cookie",
-
   "item.smokeleafeg.skybud_seeds": "Skybud Seeds",
   "item.smokeleafeg.skybud": "Skybud",
   "item.smokeleafeg.skybud_cookie": "Skybud Cookie",
-
   "item.smokeleafeg.driftleaf_seeds": "Driftleaf Seeds",
   "item.smokeleafeg.driftleaf": "Driftleaf",
   "item.smokeleafeg.driftleaf_cookie": "Driftleaf Cookie",
-
   "item.smokeleafeg.midnight_glow_seeds": "Midnight Glow Seeds",
   "item.smokeleafeg.midnight_glow": "Midnight Glow",
   "item.smokeleafeg.midnight_glow_cookie": "Midnight Glow Cookie",
-
   "item.smokeleafeg.alchemist_ash_seeds": "Alchemist's Ash Seeds",
   "item.smokeleafeg.alchemist_ash": "Alchemist's Ash",
   "item.smokeleafeg.alchemist_ash_cookie": "Alchemist's Ash Cookie",
-
   "item.smokeleafeg.cookie_tray": "Cookie Tray",
-
   "entity.minecraft.villager.smokeleafeg.smokeleaf_dealer": "Smokeleaf Dealer",
   "entity.minecraft.villager.smokeleaf_dealer": "Smokeleaf Dealer",
-
   "entity.minecraft.villager.smokeleafeg.smokeleaf_farmer": "Smokeleaf Farmer",
   "entity.minecraft.villager.smokeleaf_farmer": "Smokeleaf Farmer",
-
   "item.smokeleafeg.empty_smokeleaf_potion": "Smokeleaf Potion Bottle",
   "item.smokeleafeg.cloudpetal_potion.effect.empty": "Cloudpetal Potion",
   "item.smokeleafeg.daydream_bloom_potion.effect.empty": "Daydream Bloom Potion",
