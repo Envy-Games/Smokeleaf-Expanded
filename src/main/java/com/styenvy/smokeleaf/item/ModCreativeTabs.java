@@ -14,10 +14,10 @@ public class ModCreativeTabs {
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> SMOKELEAF_TAB =
             CREATIVE_MODE_TABS.register("smokeleaf_tab", () -> CreativeModeTab.builder()
-                    .icon(() -> new ItemStack(ModItems.DREAMBLOOM.get()))
-                    .title(Component.translatable("creativetab.smokeleaf_tab"))
-                    .displayItems((parameters, output) -> {
-                        // Seeds Section
+                    .title(Component.literal("Smokeleaf"))
+                    .icon(() -> new ItemStack(ModItems.CLOUDPETAL.get()))
+                    .displayItems((params, output) -> {
+                        // Seeds
                         output.accept(ModItems.DREAMBLOOM_SEEDS.get());
                         output.accept(ModItems.AMETHYST_HAZE_SEEDS.get());
                         output.accept(ModItems.CLOUDPETAL_SEEDS.get());
@@ -29,7 +29,7 @@ public class ModCreativeTabs {
                         output.accept(ModItems.MIDNIGHT_GLOW_SEEDS.get());
                         output.accept(ModItems.ALCHEMIST_ASH_SEEDS.get());
 
-                        // Harvested Smokeleaf Section
+                        // Harvested Smokeleaf
                         output.accept(ModItems.DREAMBLOOM.get());
                         output.accept(ModItems.AMETHYST_HAZE.get());
                         output.accept(ModItems.CLOUDPETAL.get());
@@ -41,14 +41,14 @@ public class ModCreativeTabs {
                         output.accept(ModItems.MIDNIGHT_GLOW.get());
                         output.accept(ModItems.ALCHEMIST_ASH.get());
 
-                        // Cookie Tray
-                        output.accept(ModItems.COOKIE_TRAY.get());
-
-                        // Workstation Blocks
+                        // Workstations
                         output.accept(ModItems.COOKIE_OVEN.get());
                         output.accept(ModItems.GERMINATION_TABLE.get());
 
-                        // Cookies Section
+                        // Tray
+                        output.accept(ModItems.COOKIE_TRAY.get());
+
+                        // Cookies
                         output.accept(ModItems.DREAMBLOOM_COOKIE.get());
                         output.accept(ModItems.AMETHYST_HAZE_COOKIE.get());
                         output.accept(ModItems.CLOUDPETAL_COOKIE.get());
@@ -59,6 +59,19 @@ public class ModCreativeTabs {
                         output.accept(ModItems.DRIFTLEAF_COOKIE.get());
                         output.accept(ModItems.MIDNIGHT_GLOW_COOKIE.get());
                         output.accept(ModItems.ALCHEMIST_ASH_COOKIE.get());
+
+                        // Potions
+                        output.accept(ModItems.EMPTY_SMOKELEAF_POTION.get());
+                        output.accept(ModItems.DREAMBLOOM_POTION.get());
+                        output.accept(ModItems.AMETHYST_HAZE_POTION.get());
+                        output.accept(ModItems.CLOUDPETAL_POTION.get());
+                        output.accept(ModItems.CRIMSON_EMBERLEAF_POTION.get());
+                        output.accept(ModItems.DAYDREAM_BLOOM_POTION.get());
+                        output.accept(ModItems.RUNEGRASS_POTION.get());
+                        output.accept(ModItems.SKYBUD_POTION.get());
+                        output.accept(ModItems.DRIFTLEAF_POTION.get());
+                        output.accept(ModItems.MIDNIGHT_GLOW_POTION.get());
+                        output.accept(ModItems.ALCHEMIST_ASH_POTION.get());
                     })
                     .build());
 }

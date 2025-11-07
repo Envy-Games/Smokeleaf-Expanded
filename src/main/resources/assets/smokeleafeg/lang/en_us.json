@@ -53,5 +53,17 @@
   "entity.minecraft.villager.smokeleaf_dealer": "Smokeleaf Dealer",
 
   "entity.minecraft.villager.smokeleafeg.smokeleaf_farmer": "Smokeleaf Farmer",
-  "entity.minecraft.villager.smokeleaf_farmer": "Smokeleaf Farmer"
+  "entity.minecraft.villager.smokeleaf_farmer": "Smokeleaf Farmer",
+
+  "item.smokeleafeg.empty_smokeleaf_potion": "Smokeleaf Potion Bottle",
+  "item.smokeleafeg.cloudpetal_potion.effect.empty": "Cloudpetal Potion",
+  "item.smokeleafeg.daydream_bloom_potion.effect.empty": "Daydream Bloom Potion",
+  "item.smokeleafeg.crimson_emberleaf_potion.effect.empty": "Crimson Emberleaf Potion",
+  "item.smokeleafeg.dreambloom_potion.effect.empty": "Dreambloom Potion",
+  "item.smokeleafeg.runegrass_potion.effect.empty": "Runegrass Potion",
+  "item.smokeleafeg.midnight_glow_potion.effect.empty": "Midnight Glow Potion",
+  "item.smokeleafeg.amethyst_haze_potion.effect.empty": "Amethyst Haze Potion",
+  "item.smokeleafeg.driftleaf_potion.effect.empty": "Driftleaf Potion",
+  "item.smokeleafeg.skybud_potion.effect.empty": "Skybud Potion",
+  "item.smokeleafeg.alchemist_ash_potion.effect.empty": "Alchemist’s Ash Potion"
 }

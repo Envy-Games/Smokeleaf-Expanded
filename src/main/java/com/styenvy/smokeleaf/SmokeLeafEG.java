@@ -3,6 +3,7 @@ package com.styenvy.smokeleaf;
 import com.styenvy.smokeleaf.block.ModBlocks;
 import com.styenvy.smokeleaf.item.ModCreativeTabs;
 import com.styenvy.smokeleaf.item.ModItems;
+import com.styenvy.smokeleaf.potion.ModPotions;
 import com.styenvy.smokeleaf.villager.ModPOITypes;
 import com.styenvy.smokeleaf.villager.ModVillagers;
 import com.styenvy.smokeleaf.villager.ModVillagerTrades;
@@ -28,6 +29,7 @@ public class SmokeLeafEG {
         ModCreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
         ModPOITypes.POI_TYPES.register(modEventBus);
         ModVillagers.VILLAGER_PROFESSIONS.register(modEventBus);
+        ModPotions.POTIONS.register(modEventBus);
 
         // Lifecycle
         modEventBus.addListener(this::commonSetup);
