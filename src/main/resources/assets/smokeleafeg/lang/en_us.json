@@ -65,5 +65,6 @@
   "item.smokeleafeg.amethyst_haze_potion.effect.empty": "Amethyst Haze Potion",
   "item.smokeleafeg.driftleaf_potion.effect.empty": "Driftleaf Potion",
   "item.smokeleafeg.skybud_potion.effect.empty": "Skybud Potion",
-  "item.smokeleafeg.alchemist_ash_potion.effect.empty": "Alchemist’s Ash Potion"
+  "item.smokeleafeg.alchemist_ash_potion.effect.empty": "Alchemist’s Ash Potion",
+  "effect.smokeleafeg.creative_flight" : "Can't get down!"
 }
