@@ -156,7 +156,7 @@ public class ModItems {
 
     private static final FoodProperties SKYBUD_COOKIE_FOOD = new FoodProperties.Builder()
             .nutrition(4).saturationModifier(0.5F)
-            .effect(() -> new MobEffectInstance(MobEffects.LEVITATION, 20 * 15, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.SLOW_FALLING, 20 * 30, 0), 1.0F)
             .alwaysEdible().build();
     public static final DeferredHolder<Item, Item> SKYBUD_COOKIE = ITEMS.register("skybud_cookie",
             () -> new Item(new Item.Properties().food(SKYBUD_COOKIE_FOOD).stacksTo(64)));
