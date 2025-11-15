@@ -1,3 +1,3 @@
 { "parent":"minecraft:item/generated",
-  "textures": { "layer0":"smokeleafeg:item/empty_bottle",
-    "layer1":"smokeleafeg:item/skybud_bottle" } }
+  "textures": { "layer0":"smokeleafeg:item/smokeleaf_potion_empty",
+    "layer1":"smokeleafeg:item/liquid_skybud" } }
